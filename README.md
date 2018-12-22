@@ -1,1 +1,2 @@
 # go_practice
+使用Go语言的leetcode刷题记录
