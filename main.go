@@ -41,6 +41,33 @@ func sortedSquares(A []int) []int {
 	return A
 }
 
+func arrayPairSum(nums []int) int {
+	sort.Ints(nums)
+	result := 0
+	N := len(nums)
+	for i := 0; i < N; i += 2 {
+		result += nums[i]
+	}
+	return result
+}
+
+func hasAlternatingBits(n int) bool {
+
+	return false
+}
+
+func repeatedNTimes(A []int) int {
+	container := make(map[int]int, len(A)/2+1)
+	for _, value := range A {
+		if _, ok := container[value]; !ok {
+			container[value] = 1
+		} else {
+			return value
+		}
+	}
+	return 0
+}
+
 func main() {
 	A := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
 	B := transpose(A)
@@ -50,4 +77,7 @@ func main() {
 	C := []int{-4, -1, 0, 3, 10}
 	result := sortedSquares(C)
 	fmt.Println(result)
+	nums := []int{1, 1}
+	sum := arrayPairSum(nums)
+	fmt.Println(sum)
 }
