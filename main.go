@@ -68,6 +68,38 @@ func repeatedNTimes(A []int) int {
 	return 0
 }
 
+func sumEvenAfterQueries(A []int, queries [][]int) []int {
+	result := make([]int, len(A))
+	evenMaps := make(map[int]int)
+	evenValue := 0
+	for index, value := range A {
+		if value%2 == 0 {
+			evenValue += value
+			evenMaps[index] = value
+		}
+	}
+	for ind, value := range queries {
+		index := value[1]
+		val := value[0]
+		if (A[index]+val)%2 == 0 {
+			if _, ok := evenMaps[index]; ok {
+				evenValue += val
+			} else {
+				evenValue += A[index] + val
+				evenMaps[index] = 0
+			}
+		} else {
+			if _, ok := evenMaps[index]; ok {
+				evenValue -= A[index]
+				delete(evenMaps, index)
+			}
+		}
+		A[index] += val
+		result[ind] = evenValue
+	}
+	return result
+}
+
 func main() {
 	A := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
 	B := transpose(A)
