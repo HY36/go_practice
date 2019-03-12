@@ -100,16 +100,24 @@ func sumEvenAfterQueries(A []int, queries [][]int) []int {
 	return result
 }
 
+func smallestRangeI(A []int, K int) int {
+	maxValue, minValue := A[0], A[0]
+	for _, value := range A {
+		if value > maxValue {
+			maxValue = value
+		}
+		if value < minValue {
+			minValue = value
+		}
+	}
+	dValue := maxValue - minValue
+	if dValue <= 2*K {
+		return 0
+	}
+	return dValue - 2*K
+}
+
 func main() {
-	A := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-	B := transpose(A)
-	fmt.Println(B)
-	c := shortestToChar("loveleetcode", 'e')
-	fmt.Println(c)
-	C := []int{-4, -1, 0, 3, 10}
-	result := sortedSquares(C)
-	fmt.Println(result)
-	nums := []int{1, 1}
-	sum := arrayPairSum(nums)
-	fmt.Println(sum)
+	A := []int{2,7,2}
+	fmt.Println(smallestRangeI(A, 1))
 }
