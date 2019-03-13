@@ -117,7 +117,24 @@ func smallestRangeI(A []int, K int) int {
 	return dValue - 2*K
 }
 
+func diStringMatch(S string) []int {
+	result := make([]int, len(S)+1)
+	leftIndex, rightIndex := 0, len(S)
+	index := 0
+	for _, value := range S {
+		if value == 'D' {
+			result[index] = rightIndex
+			rightIndex -= 1
+		} else {
+			result[index] = leftIndex
+			leftIndex += 1
+		}
+		index += 1
+	}
+	result[index] = leftIndex
+	return result
+}
+
 func main() {
-	A := []int{2,7,2}
-	fmt.Println(smallestRangeI(A, 1))
+	fmt.Println(diStringMatch("DDI"))
 }
