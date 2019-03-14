@@ -135,6 +135,26 @@ func diStringMatch(S string) []int {
 	return result
 }
 
+func intersection(nums1 []int, nums2 []int) []int {
+	nums1Map := make(map[int]int)
+	nums2Map := make(map[int]int)
+	result := make([]int, 0)
+	nums1Length := len(nums1)
+	nums2Length := len(nums2)
+	for i := 0; i < nums1Length; i++ {
+		nums1Map[nums1[i]] = 0
+	}
+	for i := 0; i < nums2Length; i++ {
+		nums2Map[nums2[i]] = 0
+	}
+	for key := range nums1Map {
+		if _, ok := nums2Map[key]; ok {
+			result = append(result, key)
+		}
+	}
+	return result
+}
+
 func main() {
 	fmt.Println(diStringMatch("DDI"))
 }
