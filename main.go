@@ -155,6 +155,23 @@ func intersection(nums1 []int, nums2 []int) []int {
 	return result
 }
 
+func removeOuterParentheses(S string) string {
+	left, right, position, result := 0, 0, 0, ""
+	for i := 0; i < len(S); i++ {
+		if S[i] == '(' {
+			left += 1
+		} else {
+			right += 1
+		}
+		if left == right {
+			result += S[position+1 : i]
+			left, right = 0, 0
+			position = i + 1
+		}
+	}
+	return result
+}
+
 func main() {
 	fmt.Println(diStringMatch("DDI"))
 }
