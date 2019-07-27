@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strings"
 )
 
 func transpose(A [][]int) [][]int {
@@ -170,6 +171,20 @@ func removeOuterParentheses(S string) string {
 		}
 	}
 	return result
+}
+
+func defangIPaddr(address string) string {
+	length := len(address)
+	result := make([]string, length+8)
+	for i := 0; i < length; i++ {
+		if address[i] != '.' {
+			result = append(result, string(address[i]))
+		} else {
+			result = append(result, "[.]")
+		}
+	}
+	return strings.Join(result, "")
+
 }
 
 func main() {
