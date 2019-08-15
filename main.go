@@ -187,6 +187,32 @@ func defangIPaddr(address string) string {
 
 }
 
+func heightChecker(heights []int) int {
+	index := 0
+	count := 0
+	length := len(heights)
+	for i := 1; i < length; i++ {
+		if !(heights[i] >= heights[index]) {
+			count += 1
+		} else {
+			index += 1
+		}
+	}
+	return count
+}
+
+func findOcurrences(text string, first string, second string) []string {
+	textList := strings.Split(text, " ")
+	length := len(textList)
+	result := make([]string, 0)
+	for i := 0; i < length-2; i++ {
+		if textList[i] == first && textList[i+1] == second {
+			result = append(result, textList[i+2])
+		}
+	}
+	return result
+}
+
 func main() {
-	fmt.Println(diStringMatch("DDI"))
+	fmt.Println(findOcurrences("alice is a good girl she is a good student", "a", "good"))
 }
