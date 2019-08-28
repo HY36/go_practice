@@ -213,6 +213,55 @@ func findOcurrences(text string, first string, second string) []string {
 	return result
 }
 
+func numRookCaptures(board [][]byte) int {
+	result := 0
+	for i, iv := range board {
+		for j, jv := range iv {
+			if jv == 'R' {
+				for m := j - 1; m >= 0; m-- {
+					if board[i][m] == 'p' {
+						result += 1
+						break
+					}
+					if board[i][m] == 'B' {
+						break
+					}
+				}
+				for m := j + 1; m < 8; m++ {
+					if board[i][m] == 'p' {
+						result += 1
+						break
+					}
+					if board[i][m] == 'B' {
+						break
+					}
+				}
+				for n := i - 1; n >= 0; n-- {
+					if board[n][j] == 'p' {
+						result += 1
+						break
+					}
+					if board[n][j] == 'B' {
+						break
+					}
+				}
+				for n := i + 1; n < 8; n++ {
+					if board[n][j] == 'p' {
+						result += 1
+						break
+					}
+					if board[n][j] == 'B' {
+						break
+					}
+				}
+			}
+		}
+	}
+	return result
+}
+
 func main() {
-	fmt.Println(findOcurrences("alice is a good girl she is a good student", "a", "good"))
+	//fmt.Println(findOcurrences("alice is a good girl she is a good student", "a", "good"))
+	input := [][]byte{{'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', 'p', 'p', '.', '.', '.', '.'}, {'.', 'p', 'p', 'R', '.', 'p', '.', 'p'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', 'p', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}}
+	fmt.Println(numRookCaptures(input))
 }
