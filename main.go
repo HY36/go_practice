@@ -52,11 +52,6 @@ func arrayPairSum(nums []int) int {
 	return result
 }
 
-func hasAlternatingBits(n int) bool {
-
-	return false
-}
-
 func repeatedNTimes(A []int) int {
 	container := make(map[int]int, len(A)/2+1)
 	for _, value := range A {
@@ -260,8 +255,54 @@ func numRookCaptures(board [][]byte) int {
 	return result
 }
 
+func commonChars(A []string) []string {
+	result := make([]string, 0)
+	return result
+
+}
+
+func isPalindrome(s string) bool {
+	if s == "" || len(s) == 1 {
+		return true
+	}
+	left, right, length := 0, len(s)-1, len(s)
+	for left <= right {
+		leftValue, rightValue := s[left], s[right]
+		for !((leftValue <= 122 && leftValue >= 97) || (leftValue <= 90 && leftValue >= 65) || (leftValue <= 57 && leftValue >= 48)) {
+			if left < length-1 {
+				left++
+				leftValue = s[left]
+			} else {
+				return true
+			}
+
+		}
+		for !((rightValue <= 122 && rightValue >= 97) || (rightValue <= 90 && rightValue >= 65) || (rightValue <= 57 && rightValue >= 48)) {
+			if right > 0 {
+				right--
+				rightValue = s[right]
+			} else {
+				return true
+			}
+
+		}
+		if leftValue < 97 && !(leftValue < 58 && leftValue > 47) {
+			leftValue += 32
+		}
+		if rightValue < 97 && !(rightValue < 58 && rightValue > 47) {
+			rightValue += 32
+		}
+		if leftValue == rightValue {
+			left++
+			right--
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
 func main() {
-	//fmt.Println(findOcurrences("alice is a good girl she is a good student", "a", "good"))
-	input := [][]byte{{'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', 'p', 'p', '.', '.', '.', '.'}, {'.', 'p', 'p', 'R', '.', 'p', '.', 'p'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', 'p', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}}
-	fmt.Println(numRookCaptures(input))
+	input := []int{2, 1, 2, 1, 1, 2, 2, 1}
+	fmt.Println(heightChecker(input))
 }
