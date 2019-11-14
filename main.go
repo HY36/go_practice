@@ -124,12 +124,12 @@ func diStringMatch(S string) []int {
 	for _, value := range S {
 		if value == 'D' {
 			result[index] = rightIndex
-			rightIndex -= 1
+			rightIndex--
 		} else {
 			result[index] = leftIndex
-			leftIndex += 1
+			leftIndex++
 		}
-		index += 1
+		index++
 	}
 	result[index] = leftIndex
 	return result
@@ -170,6 +170,12 @@ func removeOuterParentheses(S string) string {
 		}
 	}
 	return result
+}
+
+func heightChecker(heights []int) int {
+	count := 0
+
+	return count
 }
 
 func main() {
