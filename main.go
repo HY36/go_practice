@@ -159,9 +159,9 @@ func removeOuterParentheses(S string) string {
 	left, right, position, result := 0, 0, 0, ""
 	for i := 0; i < len(S); i++ {
 		if S[i] == '(' {
-			left += 1
+			left++
 		} else {
-			right += 1
+			right++
 		}
 		if left == right {
 			result += S[position+1 : i]
@@ -178,6 +178,33 @@ func heightChecker(heights []int) int {
 	return count
 }
 
+func longestPalindrome(s string) int {
+	container := make(map[rune]int)
+	even, odd, oddCount := 0, 0, 0
+	for _, value := range s {
+		container[value]++
+	}
+	if len(container) == 1 {
+		return container[rune(s[0])]
+	}
+	for _, value := range container {
+		if value%2 == 0 {
+			even += value
+		} else {
+			odd += value
+			oddCount++
+		}
+	}
+	if odd != 0 {
+		odd = odd - oddCount + 1
+	}
+	return even + odd
+}
+
 func main() {
-	fmt.Println(diStringMatch("DDI"))
+	fmt.Println(longestPalindrome("aaa"))
+	fmt.Println(longestPalindrome("tattarrattat"))
+	fmt.Println(longestPalindrome("abccccdd"))
+	fmt.Println(longestPalindrome("ababababa"))
+	fmt.Println(longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"))
 }
