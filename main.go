@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strings"
 )
 
 func transpose(A [][]int) [][]int {
@@ -49,11 +50,6 @@ func arrayPairSum(nums []int) int {
 		result += nums[i]
 	}
 	return result
-}
-
-func hasAlternatingBits(n int) bool {
-
-	return false
 }
 
 func repeatedNTimes(A []int) int {
@@ -171,13 +167,6 @@ func removeOuterParentheses(S string) string {
 	}
 	return result
 }
-
-func heightChecker(heights []int) int {
-	count := 0
-
-	return count
-}
-
 func longestPalindrome(s string) int {
 	container := make(map[rune]int)
 	even, odd, oddCount := 0, 0, 0
@@ -201,7 +190,143 @@ func longestPalindrome(s string) int {
 	return even + odd
 }
 
+func defangIPaddr(address string) string {
+	length := len(address)
+	result := make([]string, length+8)
+	for i := 0; i < length; i++ {
+		if address[i] != '.' {
+			result = append(result, string(address[i]))
+		} else {
+			result = append(result, "[.]")
+		}
+	}
+	return strings.Join(result, "")
+
+}
+
+func heightChecker(heights []int) int {
+	index := 0
+	count := 0
+	length := len(heights)
+	for i := 1; i < length; i++ {
+		if !(heights[i] >= heights[index]) {
+			count++
+		} else {
+			index++
+		}
+	}
+	return count
+}
+
+func findOcurrences(text string, first string, second string) []string {
+	textList := strings.Split(text, " ")
+	length := len(textList)
+	result := make([]string, 0)
+	for i := 0; i < length-2; i++ {
+		if textList[i] == first && textList[i+1] == second {
+			result = append(result, textList[i+2])
+		}
+	}
+	return result
+}
+
+func numRookCaptures(board [][]byte) int {
+	result := 0
+	for i, iv := range board {
+		for j, jv := range iv {
+			if jv == 'R' {
+				for m := j - 1; m >= 0; m-- {
+					if board[i][m] == 'p' {
+						result++
+						break
+					}
+					if board[i][m] == 'B' {
+						break
+					}
+				}
+				for m := j + 1; m < 8; m++ {
+					if board[i][m] == 'p' {
+						result++
+						break
+					}
+					if board[i][m] == 'B' {
+						break
+					}
+				}
+				for n := i - 1; n >= 0; n-- {
+					if board[n][j] == 'p' {
+						result++
+						break
+					}
+					if board[n][j] == 'B' {
+						break
+					}
+				}
+				for n := i + 1; n < 8; n++ {
+					if board[n][j] == 'p' {
+						result++
+						break
+					}
+					if board[n][j] == 'B' {
+						break
+					}
+				}
+			}
+		}
+	}
+	return result
+}
+
+func commonChars(A []string) []string {
+	result := make([]string, 0)
+	return result
+
+}
+
+func isPalindrome(s string) bool {
+	if s == "" || len(s) == 1 {
+		return true
+	}
+	left, right, length := 0, len(s)-1, len(s)
+	for left <= right {
+		leftValue, rightValue := s[left], s[right]
+		for !((leftValue <= 122 && leftValue >= 97) || (leftValue <= 90 && leftValue >= 65) || (leftValue <= 57 && leftValue >= 48)) {
+			if left < length-1 {
+				left++
+				leftValue = s[left]
+			} else {
+				return true
+			}
+
+		}
+		for !((rightValue <= 122 && rightValue >= 97) || (rightValue <= 90 && rightValue >= 65) || (rightValue <= 57 && rightValue >= 48)) {
+			if right > 0 {
+				right--
+				rightValue = s[right]
+			} else {
+				return true
+			}
+
+		}
+		if leftValue < 97 && !(leftValue < 58 && leftValue > 47) {
+			leftValue += 32
+		}
+		if rightValue < 97 && !(rightValue < 58 && rightValue > 47) {
+			rightValue += 32
+		}
+		if leftValue == rightValue {
+			left++
+			right--
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
 func main() {
+	input := []int{2, 1, 2, 1, 1, 2, 2, 1}
+	fmt.Println(heightChecker(input))
 	fmt.Println(longestPalindrome("aaa"))
 	fmt.Println(longestPalindrome("tattarrattat"))
 	fmt.Println(longestPalindrome("abccccdd"))
