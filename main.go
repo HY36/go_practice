@@ -324,12 +324,26 @@ func isPalindrome(s string) bool {
 	return true
 }
 
+func game(guess []int, answer []int) int {
+	count := 0
+	for i:=0;i<len(guess);i++ {
+		if guess[i] == answer[i] {
+			count++
+		}
+	}
+    return count
+}
+
+// func balancedStringSplit(s string) int {
+// 	count := 0
+//     for i:=0;; {
+// 		if s[i] + s[i+1] ==  {
+// 			continue
+// 		}
+// 	}
+// 	return count
+// }
+
 func main() {
-	input := []int{2, 1, 2, 1, 1, 2, 2, 1}
-	fmt.Println(heightChecker(input))
-	fmt.Println(longestPalindrome("aaa"))
-	fmt.Println(longestPalindrome("tattarrattat"))
-	fmt.Println(longestPalindrome("abccccdd"))
-	fmt.Println(longestPalindrome("ababababa"))
-	fmt.Println(longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"))
+	// balancedStringSplit("")
 }
