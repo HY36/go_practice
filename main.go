@@ -364,7 +364,8 @@ func balancedStringSplit(s string) int {
 }
 
 func deleteNode(node *ListNode) {
-
+	node.Val = node.Next.Val
+	node.Next = node.Next.Next
 }
 
 func lengthOfLastWord(s string) int {
