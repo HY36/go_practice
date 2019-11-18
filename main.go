@@ -381,11 +381,38 @@ func lengthOfLastWord(s string) int {
 	return lastVal
 }
 
+func oddCells(n int, m int, indices [][]int) int {
+	matrix, count := make([][]int, n), 0
+	for i := 0; i < n; i++ {
+		innerMatrix := make([]int, m)
+		matrix[i] = innerMatrix
+	}
+	for _, out := range indices {
+		for inIndex, in := range out {
+			if inIndex == 0 {
+				for i := 0; i < m; i++ {
+					matrix[in][i]++
+				}
+			} else {
+				for i := 0; i < n; i++ {
+					matrix[i][in]++
+				}
+			}
+		}
+	}
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
+			if matrix[i][j]%2 == 1 {
+				count++
+			}
+		}
+	}
+	return count
+}
+
 func main() {
-	fmt.Println(lengthOfLastWord("a "))
-	fmt.Println(lengthOfLastWord("Hello World!"))
-	fmt.Println(lengthOfLastWord(" "))
-	fmt.Println(lengthOfLastWord(""))
-	fmt.Println(lengthOfLastWord("a"))
-	fmt.Println(lengthOfLastWord("b   a    "))
+	input := [][]int{{0, 1}, {1, 1}}
+	fmt.Println(oddCells(2, 3, input))
+	input = [][]int{{1,1}, {0,0}}
+	fmt.Println(oddCells(2, 2, input))
 }
