@@ -326,24 +326,39 @@ func isPalindrome(s string) bool {
 
 func game(guess []int, answer []int) int {
 	count := 0
-	for i:=0;i<len(guess);i++ {
+	for i := 0; i < len(guess); i++ {
 		if guess[i] == answer[i] {
 			count++
 		}
 	}
-    return count
+	return count
 }
 
-// func balancedStringSplit(s string) int {
-// 	count := 0
-//     for i:=0;; {
-// 		if s[i] + s[i+1] ==  {
-// 			continue
-// 		}
-// 	}
-// 	return count
-// }
+func balancedStringSplit(s string) int {
+	container := make([]string, 0, 0)
+	count := 0
+	container = append(container, string(s[0]))
+	for i := 1; i < len(s); i++ {
+		m := string(s[i])
+		if len(container) == 0{
+			container = append(container, m)
+			continue
+		}
+		currentVal := m + container[len(container)-1]
+		if currentVal == "LR" || currentVal == "RL" {
+			container = container[:len(container)-1]
+			if len(container) == 0 {
+				count++
+			}
+		} else {
+			container = append(container, m)
+		}
+	}
+	return count
+}
 
 func main() {
-	// balancedStringSplit("")
+	fmt.Println(balancedStringSplit("RLRRLLRLRL"))
+	fmt.Println(balancedStringSplit("RLLLLRRRLR"))
+	fmt.Println(balancedStringSplit("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"))
 }
