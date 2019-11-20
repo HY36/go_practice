@@ -12,6 +12,13 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// TreeNode Definition for a binary tree node.
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 func transpose(A [][]int) [][]int {
 	line, column := len(A), len(A[0])
 	var B [][]int
@@ -211,14 +218,11 @@ func defangIPaddr(address string) string {
 }
 
 func heightChecker(heights []int) int {
-	index := 0
 	count := 0
 	length := len(heights)
 	for i := 1; i < length; i++ {
-		if !(heights[i] >= heights[index]) {
+		if (heights[i] - heights[i-1]) > 1 {
 			count++
-		} else {
-			index++
 		}
 	}
 	return count
@@ -410,9 +414,22 @@ func oddCells(n int, m int, indices [][]int) int {
 	return count
 }
 
+func searchBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if val > root.Val {
+		return searchBST(root.Right, val)
+	} else if val < root.Val {
+		return searchBST(root.Left, val)
+	} else {
+		return root
+	}
+}
+
 func main() {
-	input := [][]int{{0, 1}, {1, 1}}
-	fmt.Println(oddCells(2, 3, input))
-	input = [][]int{{1,1}, {0,0}}
-	fmt.Println(oddCells(2, 2, input))
+	input := []int{1, 1, 4, 2, 1, 3}
+	fmt.Println(heightChecker(input))
+	input = []int{2, 1, 2, 1, 1, 2, 2, 1}
+	fmt.Println(heightChecker(input))
 }
