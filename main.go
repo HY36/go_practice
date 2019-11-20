@@ -414,6 +414,7 @@ func oddCells(n int, m int, indices [][]int) int {
 	return count
 }
 
+// NO.700 Search in a Binary Search Tree
 func searchBST(root *TreeNode, val int) *TreeNode {
 	if root == nil {
 		return nil
@@ -425,6 +426,21 @@ func searchBST(root *TreeNode, val int) *TreeNode {
 	} else {
 		return root
 	}
+}
+
+// NO.104 Maximum Depth of Binary Tree
+func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func main() {
