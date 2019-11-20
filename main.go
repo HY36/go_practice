@@ -443,6 +443,21 @@ func max(a, b int) int {
 	return b
 }
 
+// NO.111 Minimum Depth of Binary Tree
+func minDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	return min(minDepth(root.Left), minDepth(root.Right)) + 1
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func main() {
 	input := []int{1, 1, 4, 2, 1, 3}
 	fmt.Println(heightChecker(input))
