@@ -451,6 +451,7 @@ func minDepth(root *TreeNode) int {
 	return min(minDepth(root.Left), minDepth(root.Right)) + 1
 }
 
+// todo
 func min(a, b int) int {
 	if a < b {
 		return a
@@ -458,9 +459,28 @@ func min(a, b int) int {
 	return b
 }
 
+func rotate(nums []int, k int) {
+	// length, tmp := len(nums), 0
+
+}
+
+// NO.26 Remove Duplicates from Sorted Array
+func removeDuplicates(nums []int) int {
+	count := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[i-1] {
+			count++
+			nums[count] = nums[i]
+		}
+	}
+	return count + 1
+}
+
 func main() {
-	input := []int{1, 1, 4, 2, 1, 3}
-	fmt.Println(heightChecker(input))
-	input = []int{2, 1, 2, 1, 1, 2, 2, 1}
-	fmt.Println(heightChecker(input))
+	input := []int{1, 1, 2}
+	fmt.Println(removeDuplicates(input))
+	fmt.Println(input)
+	input = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+	fmt.Println(removeDuplicates(input))
+	fmt.Println(input)
 }
