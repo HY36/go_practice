@@ -476,11 +476,30 @@ func removeDuplicates(nums []int) int {
 	return count + 1
 }
 
+// NO.121 Best Time to Buy and Sell Stock
+func maxProfit1(prices []int) int {
+	pricesLen := len(prices)
+	if pricesLen <= 1 {
+		return 0
+	} else {
+		profit, minPrice, currentProfit := 0, prices[0], 0
+		for i := 1; i < pricesLen; i++ {
+			currentProfit = prices[i] - minPrice
+			if currentProfit < 0 {
+				minPrice = prices[i]
+			} else {
+				if profit < currentProfit {
+					profit = currentProfit
+				}
+			}
+		}
+		return profit
+	}
+}
+
 func main() {
-	input := []int{1, 1, 2}
-	fmt.Println(removeDuplicates(input))
-	fmt.Println(input)
-	input = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
-	fmt.Println(removeDuplicates(input))
-	fmt.Println(input)
+	input := []int{7, 1, 5, 3, 6, 4}
+	fmt.Println(maxProfit1(input))
+	input = []int{7, 6, 4, 3, 1}
+	fmt.Println(maxProfit1(input))
 }
