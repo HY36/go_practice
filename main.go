@@ -448,7 +448,33 @@ func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	return min(minDepth(root.Left), minDepth(root.Right)) + 1
+	if root.Left == nil && root.Right == nil {
+		return 1
+	}
+
+	if root.Left == nil {
+		return minDepth(root.Right) + 1
+	} else if root.Right == nil {
+		return minDepth(root.Left) + 1
+	} else {
+		return min(minDepth(root.Left), minDepth(root.Right)) + 1
+	}
+}
+
+// NO.111 Minimum Depth of Binary Tree
+// second solution
+func minDepth2(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	lDeepth := minDepth2(root.Left)
+	rDeepth := minDepth2(root.Right)
+
+	if lDeepth == 0 || rDeepth == 0 {
+		return lDeepth + rDeepth + 1
+	} else {
+		return min(lDeepth, rDeepth) + 1
+	}
 }
 
 // todo
@@ -481,25 +507,51 @@ func maxProfit1(prices []int) int {
 	pricesLen := len(prices)
 	if pricesLen <= 1 {
 		return 0
-	} else {
-		profit, minPrice, currentProfit := 0, prices[0], 0
-		for i := 1; i < pricesLen; i++ {
-			currentProfit = prices[i] - minPrice
-			if currentProfit < 0 {
-				minPrice = prices[i]
-			} else {
-				if profit < currentProfit {
-					profit = currentProfit
-				}
+	}
+	profit, minPrice, currentProfit := 0, prices[0], 0
+	for i := 1; i < pricesLen; i++ {
+		currentProfit = prices[i] - minPrice
+		if currentProfit < 0 {
+			minPrice = prices[i]
+		} else {
+			if profit < currentProfit {
+				profit = currentProfit
 			}
 		}
-		return profit
 	}
+	return profit
+}
+
+// NO.122 Best Time to Buy and Sell Stock II
+func maxProfit2(prices []int) int {
+	pricesLen := len(prices)
+	if pricesLen <= 1 {
+		return 0
+	}
+	profit, minPrice, lastProfit, currentProfit := 0, prices[0], 0, 0
+	for index := 1; index < pricesLen; index++ {
+		currentProfit = prices[index] - minPrice
+		if currentProfit < lastProfit {
+			if currentProfit >= 0 {
+				profit += lastProfit
+			}
+			minPrice = prices[index]
+		}
+		lastProfit = currentProfit
+	}
+	if profit < (prices[pricesLen-1] - prices[0]) {
+		profit = prices[pricesLen-1] - prices[0]
+	}
+	return profit
 }
 
 func main() {
 	input := []int{7, 1, 5, 3, 6, 4}
-	fmt.Println(maxProfit1(input))
+	fmt.Println(maxProfit2(input))
+	input = []int{1, 2, 3, 4, 5}
+	fmt.Println(maxProfit2(input))
 	input = []int{7, 6, 4, 3, 1}
-	fmt.Println(maxProfit1(input))
+	fmt.Println(maxProfit2(input))
+	input = []int{6, 1, 3, 2, 4, 7}
+	fmt.Println(maxProfit2(input))
 }
