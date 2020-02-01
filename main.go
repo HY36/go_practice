@@ -472,9 +472,8 @@ func minDepth2(root *TreeNode) int {
 
 	if lDeepth == 0 || rDeepth == 0 {
 		return lDeepth + rDeepth + 1
-	} else {
-		return min(lDeepth, rDeepth) + 1
 	}
+	return min(lDeepth, rDeepth) + 1
 }
 
 // todo
@@ -483,6 +482,19 @@ func min(a, b int) int {
 		return a
 	}
 	return b
+}
+
+// NO. 1313 Decompress Run-Length Encoded List
+func decompressRLElist(nums []int) []int {
+	nLength := len(nums)
+	result := make([]int, 0)
+	for i := 0; i < nLength-1; i += 2 {
+		a, b := nums[i], nums[i+1]
+		for j := 0; j < a; j++ {
+			result = append(result, b)
+		}
+	}
+	return result
 }
 
 func rotate(nums []int, k int) {
