@@ -497,6 +497,20 @@ func decompressRLElist(nums []int) []int {
 	return result
 }
 
+// 1281. Subtract the Product and Sum of Digits of an Integer
+func subtractProductAndSum(n int) int {
+	sum, product := 0, 1
+	for {
+		if n == 0 {
+			break
+		}
+		product *= n % 10
+		sum += n % 10
+		n /= 10
+	}
+	return product - sum
+}
+
 func rotate(nums []int, k int) {
 	// length, tmp := len(nums), 0
 
@@ -558,12 +572,6 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	input := []int{7, 1, 5, 3, 6, 4}
-	fmt.Println(maxProfit2(input))
-	input = []int{1, 2, 3, 4, 5}
-	fmt.Println(maxProfit2(input))
-	input = []int{7, 6, 4, 3, 1}
-	fmt.Println(maxProfit2(input))
-	input = []int{6, 1, 3, 2, 4, 7}
-	fmt.Println(maxProfit2(input))
+	fmt.Println(subtractProductAndSum(234))
+	fmt.Println(subtractProductAndSum(4421))
 }
