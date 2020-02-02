@@ -530,6 +530,28 @@ func findNumbers(nums []int) int {
 	return result
 }
 
+// 1290. Convert Binary Number in a Linked List to Integer
+func getDecimalValue(head *ListNode) int {
+	container, result := make([]int, 0), 0
+	for {
+		container = append(container, head.Val)
+		if head.Next == nil {
+			break
+		}
+		head = head.Next
+	}
+	length := len(container)
+	for i := 0; i < length; i++ {
+		result += container[i] << (length - i - 1)
+	}
+	return result
+}
+
+// 1323. Maximum 69 Number
+func maximum69Number(num int) int {
+	return 0
+}
+
 func rotate(nums []int, k int) {
 	// length, tmp := len(nums), 0
 
@@ -591,8 +613,10 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	input := []int{12, 345, 2, 6, 7896}
-	fmt.Println(findNumbers(input))
-	input = []int{555, 901, 482, 1771}
-	fmt.Println(findNumbers(input))
+	container, result := []int{1, 0, 1}, 0
+	length := len(container)
+	for i := 0; i < length; i++ {
+		result += container[i] << (length - i - 1)
+	}
+	fmt.Println(result)
 }
