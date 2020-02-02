@@ -511,6 +511,25 @@ func subtractProductAndSum(n int) int {
 	return product - sum
 }
 
+// 1295. Find Numbers with Even Number of Digits
+func findNumbers(nums []int) int {
+	var result, count int
+	for _, n := range nums {
+		count = 0
+		for {
+			if n == 0 {
+				break
+			}
+			n /= 10
+			count++
+		}
+		if count%2 == 0 {
+			result++
+		}
+	}
+	return result
+}
+
 func rotate(nums []int, k int) {
 	// length, tmp := len(nums), 0
 
@@ -572,6 +591,8 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	fmt.Println(subtractProductAndSum(234))
-	fmt.Println(subtractProductAndSum(4421))
+	input := []int{12, 345, 2, 6, 7896}
+	fmt.Println(findNumbers(input))
+	input = []int{555, 901, 482, 1771}
+	fmt.Println(findNumbers(input))
 }
