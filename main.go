@@ -559,7 +559,20 @@ func maximum69Number(num int) int {
 
 // 1304. Find N Unique Integers Sum up to Zero
 func sumZero(n int) []int {
-	container := make([]int, n)
+	if n == 1 {
+		return []int{0}
+	}
+	container, i := make([]int, n), 0
+	if n%2 != 0 {
+		i = 1
+	} else {
+		i = 2
+		container[0], container[1] = 1, -1
+	}
+	for ; i < n-1; i += 2 {
+		container[i] = i
+		container[i+1] = -i
+	}
 	return container
 }
 
@@ -624,8 +637,12 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	fmt.Println(maximum69Number(9669))
-	fmt.Println(maximum69Number(9996))
-	fmt.Println(maximum69Number(9999))
+	fmt.Println(sumZero(5))
+	fmt.Println(sumZero(3))
+	fmt.Println(sumZero(1))
+	fmt.Println(sumZero(2))
+	fmt.Println(sumZero(4))
+	fmt.Println(sumZero(6))
+	fmt.Println(sumZero(8))
 	// fmt.Println(result)
 }
