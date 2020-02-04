@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -549,7 +550,22 @@ func getDecimalValue(head *ListNode) int {
 
 // 1323. Maximum 69 Number
 func maximum69Number(num int) int {
-	return 0
+	n, flag := strconv.Itoa(num), false
+	length := len(n)
+	for i := 0; i < length && !flag; i++ {
+		if n[i] == '6' {
+			n = n[:i] + "9" + n[i+1:]
+			flag = true
+		}
+	}
+	result, _ := strconv.Atoi(n)
+	return result
+}
+
+// 1304. Find N Unique Integers Sum up to Zero
+func sumZero(n int) []int {
+	container := make([]int, n)
+	return container
 }
 
 func rotate(nums []int, k int) {
@@ -613,10 +629,8 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	container, result := []int{1, 0, 1}, 0
-	length := len(container)
-	for i := 0; i < length; i++ {
-		result += container[i] << (length - i - 1)
-	}
-	fmt.Println(result)
+	fmt.Println(maximum69Number(9669))
+	fmt.Println(maximum69Number(9996))
+	fmt.Println(maximum69Number(9999))
+	// fmt.Println(result)
 }
