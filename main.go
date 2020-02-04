@@ -562,17 +562,12 @@ func sumZero(n int) []int {
 	if n == 1 {
 		return []int{0}
 	}
-	container, i := make([]int, n), 0
-	if n%2 != 0 {
-		i = 1
-	} else {
-		i = 2
-		container[0], container[1] = 1, -1
+	container, sum := make([]int, n), 0
+	for i := 0; i < n-1; i++ {
+		container[i] = i + 1
+		sum += i + 1
 	}
-	for ; i < n-1; i += 2 {
-		container[i] = i
-		container[i+1] = -i
-	}
+	container[n-1] = -sum
 	return container
 }
 
