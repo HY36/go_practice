@@ -550,14 +550,9 @@ func getDecimalValue(head *ListNode) int {
 
 // 1323. Maximum 69 Number
 func maximum69Number(num int) int {
-	n, flag := strconv.Itoa(num), false
-	length := len(n)
-	for i := 0; i < length && !flag; i++ {
-		if n[i] == '6' {
-			n = n[:i] + "9" + n[i+1:]
-			flag = true
-		}
-	}
+	n := strconv.Itoa(num)
+	n = strings.Replace(n,
+		"6", "9", 1)
 	result, _ := strconv.Atoi(n)
 	return result
 }
