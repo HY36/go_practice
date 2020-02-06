@@ -477,7 +477,7 @@ func minDepth2(root *TreeNode) int {
 	return min(lDeepth, rDeepth) + 1
 }
 
-// todo
+// min number
 func min(a, b int) int {
 	if a < b {
 		return a
@@ -571,6 +571,37 @@ func sumZero(n int) []int {
 	return container
 }
 
+// 938. Range Sum of BST
+func rangeSumBST(root *TreeNode, L int, R int) int {
+	return 0
+}
+
+// 1309.Decrypt String from Alphabet to Integer Mapping
+func freqAlphabets(s string) string {
+	length, i := len(s), 0
+	result := make([]byte, 0)
+	for {
+		if i == length {
+			break
+		}
+		if s[i] != '#' {
+			result = append(result, s[i]+48)
+			i++
+		} else {
+			i -= 2
+			result = result[:len(result)-2]
+			if s[i] == '1' {
+				result = append(result, s[i]+s[i+1]+9)
+			} else {
+				result = append(result, s[i]+s[i+1]+18)
+			}
+			i += 3
+		}
+
+	}
+	return string(result)
+}
+
 func rotate(nums []int, k int) {
 	// length, tmp := len(nums), 0
 
@@ -632,12 +663,8 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	fmt.Println(sumZero(5))
-	fmt.Println(sumZero(3))
-	fmt.Println(sumZero(1))
-	fmt.Println(sumZero(2))
-	fmt.Println(sumZero(4))
-	fmt.Println(sumZero(6))
-	fmt.Println(sumZero(8))
-	// fmt.Println(result)
+	fmt.Println(freqAlphabets("10#11#12"))
+	fmt.Println(freqAlphabets("1326#"))
+	fmt.Println(freqAlphabets("25#"))
+	fmt.Println(freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"))
 }
