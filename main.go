@@ -602,6 +602,37 @@ func freqAlphabets(s string) string {
 	return string(result)
 }
 
+// 1207. Unique Number of Occurrences
+func uniqueOccurrences(arr []int) bool {
+	container := make(map[int]int)
+	for i := range arr {
+		if _, ok := container[arr[i]]; ok {
+			container[arr[i]]++
+		} else {
+			container[arr[i]] = 1
+		}
+	}
+	return true
+}
+
+// 1299. Replace Elements with Greatest Element on Right Side
+func replaceElements(arr []int) []int {
+	arrLength := len(arr)
+	result := make([]int, arrLength)
+
+	for i := 0; i < arrLength-1; i++ {
+		tmp := 0
+		for j := i + 1; j < arrLength; j++ {
+			if arr[j] > tmp {
+				tmp = arr[j]
+			}
+		}
+		result[i] = tmp
+	}
+	result[arrLength-1] = -1
+	return result
+}
+
 func rotate(nums []int, k int) {
 	// length, tmp := len(nums), 0
 
@@ -663,8 +694,6 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	fmt.Println(freqAlphabets("10#11#12"))
-	fmt.Println(freqAlphabets("1326#"))
-	fmt.Println(freqAlphabets("25#"))
-	fmt.Println(freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"))
+	input := []int{17, 18, 5, 4, 6, 1}
+	fmt.Println(replaceElements(input))
 }
