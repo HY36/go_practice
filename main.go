@@ -645,6 +645,11 @@ func replaceElements(arr []int) []int {
 	return result
 }
 
+// 965. Univalued Binary Tree
+func isUnivalTree(root *TreeNode) bool {
+    return true
+}
+
 func rotate(nums []int, k int) {
 	// length, tmp := len(nums), 0
 
