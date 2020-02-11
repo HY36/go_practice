@@ -612,9 +612,21 @@ func uniqueOccurrences(arr []int) bool {
 			container[arr[i]] = 1
 		}
 	}
+	uniqueContainer := make(map[int]int)
+	for _, v := range container {
+		if _, ok := uniqueContainer[v]; ok {
+			uniqueContainer[v]++
+		} else {
+			uniqueContainer[v] = 1
+		}
+	}
+	if len(uniqueContainer) != len(container) {
+		return false
+	}
 	return true
 }
 
+// todo: optimizer
 // 1299. Replace Elements with Greatest Element on Right Side
 func replaceElements(arr []int) []int {
 	arrLength := len(arr)
@@ -694,6 +706,9 @@ func maxProfit2(prices []int) int {
 }
 
 func main() {
-	input := []int{17, 18, 5, 4, 6, 1}
-	fmt.Println(replaceElements(input))
+	input := []int{1, 2, 2, 1, 1, 3}
+	fmt.Println(uniqueOccurrences(input))
+	input = []int{1, 2}
+	fmt.Println(uniqueOccurrences(input))
+	fmt.Println(uniqueOccurrences([]int{-3, 0, 1, -3, 1, 1, 1, -3, 10, 0}))
 }
