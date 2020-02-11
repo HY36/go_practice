@@ -705,6 +705,19 @@ func maxProfit2(prices []int) int {
 	return profit
 }
 
+// 206. Reverse Linked List
+func reverseList(head *ListNode) *ListNode {
+
+	for {
+		if head.Next == nil {
+			break
+		}
+
+	}
+
+	return head
+}
+
 func main() {
 	input := []int{1, 2, 2, 1, 1, 3}
 	fmt.Println(uniqueOccurrences(input))
