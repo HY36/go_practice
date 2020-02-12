@@ -712,6 +712,8 @@ func maxProfit2(prices []int) int {
 
 // 206. Reverse Linked List
 func reverseList(head *ListNode) *ListNode {
+	pre := new(ListNode)
+	pre.Next = head
 
 	for {
 		if head.Next == nil {
