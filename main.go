@@ -501,10 +501,7 @@ func decompressRLElist(nums []int) []int {
 // 1281. Subtract the Product and Sum of Digits of an Integer
 func subtractProductAndSum(n int) int {
 	sum, product := 0, 1
-	for {
-		if n == 0 {
-			break
-		}
+	for n != 0 {
 		product *= n % 10
 		sum += n % 10
 		n /= 10
@@ -517,10 +514,7 @@ func findNumbers(nums []int) int {
 	var result, count int
 	for _, n := range nums {
 		count = 0
-		for {
-			if n == 0 {
-				break
-			}
+		for n != 0 {
 			n /= 10
 			count++
 		}
@@ -534,11 +528,8 @@ func findNumbers(nums []int) int {
 // 1290. Convert Binary Number in a Linked List to Integer
 func getDecimalValue(head *ListNode) int {
 	container, result := make([]int, 0), 0
-	for {
+	for head.Next != nil {
 		container = append(container, head.Val)
-		if head.Next == nil {
-			break
-		}
 		head = head.Next
 	}
 	length := len(container)
@@ -580,10 +571,7 @@ func rangeSumBST(root *TreeNode, L int, R int) int {
 func freqAlphabets(s string) string {
 	length, i := len(s), 0
 	result := make([]byte, 0)
-	for {
-		if i == length {
-			break
-		}
+	for i != length {
 		if s[i] != '#' {
 			result = append(result, s[i]+48)
 			i++
@@ -647,7 +635,7 @@ func replaceElements(arr []int) []int {
 
 // 965. Univalued Binary Tree
 func isUnivalTree(root *TreeNode) bool {
-    return true
+	return true
 }
 
 func rotate(nums []int, k int) {
@@ -712,17 +700,12 @@ func maxProfit2(prices []int) int {
 
 // 206. Reverse Linked List
 func reverseList(head *ListNode) *ListNode {
-	pre := new(ListNode)
-	pre.Next = head
-
-	for {
-		if head.Next == nil {
-			break
-		}
-
+	var rev *ListNode
+	p := head
+	for p != nil {
+		rev, p, p.Next = p, p.Next, rev
 	}
-
-	return head
+	return rev
 }
 
 func main() {
