@@ -708,10 +708,21 @@ func reverseList(head *ListNode) *ListNode {
 	return rev
 }
 
+// 20. Valid Parentheses
+func isValid(s string) bool {
+	// sMap := map[string]string{
+	// 	"{": "}",
+	// 	"[": "]",
+	// 	"(": ")",
+	// }
+	for _, v := range s {
+		fmt.Println(string(v))
+	}
+
+	return true
+}
+
 func main() {
-	input := []int{1, 2, 2, 1, 1, 3}
-	fmt.Println(uniqueOccurrences(input))
-	input = []int{1, 2}
-	fmt.Println(uniqueOccurrences(input))
-	fmt.Println(uniqueOccurrences([]int{-3, 0, 1, -3, 1, 1, 1, -3, 10, 0}))
+	input := "(}"
+	fmt.Println(isValid(input))
 }
