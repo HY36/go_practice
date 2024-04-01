@@ -710,19 +710,46 @@ func reverseList(head *ListNode) *ListNode {
 
 // 20. Valid Parentheses
 func isValid(s string) bool {
-	// sMap := map[string]string{
-	// 	"{": "}",
-	// 	"[": "]",
-	// 	"(": ")",
-	// }
+	sMap := map[rune]rune{
+		123: 125,
+		91:  93,
+		40:  41,
+	}
 	for _, v := range s {
-		fmt.Println(string(v))
+		d := sMap[v]
+		fmt.Println(v, string(d))
 	}
 
 	return true
 }
 
+// reverseSlice 逆转一个字符串切片
+func reverseSlice(s []string) []string {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i] // 交换元素
+	}
+	return s
+}
+
+// 2810. Faulty Keyboard
+func finalString(s string) string {
+	var result []string
+	for _, v := range s {
+		if string(v) != "i" {
+			result = append(result, string(v))
+		} else {
+			result = reverseSlice(result)
+		}
+	}
+	return strings.Join(result, "")
+}
+
+// 2908. Minimum Sum of Mountain Triplets I
+func minimumSum(nums []int) int {
+	return 0
+}
+
 func main() {
-	input := "(}"
-	fmt.Println(isValid(input))
+	input := "string"
+	fmt.Println(finalString(input))
 }
